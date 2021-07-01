@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<body>
+	<h1> Informācija par visiem kursiem </h1>
+	
+	<table>
+	<thead>
+        <tr>
+            <th> ID </th>
+            <th> Nosaukums </th>
+            <th> Kredītpunkti </th>
+            <th> Pasniedzējs </th>
+        </tr>
+    </thead>
+		<th:block th:each="temp : ${courses}">
+			<tr>
+				<td th:text="${temp.getCid()}"></td>
+				<td th:text="${temp.getTitle()}"></td>
+				<td th:text="${temp.getCreditPoints()}"></td>
+				<td th:text="${temp.getProfessor()}"></td>
+			</tr>
+		</th:block>
+	</table>
+                    
+ <div th:if="${totalPages > 1}">
+            <div class="row col-sm-10">
+            
+                <div class="col-sm-2">
+                    Total Rows: [[${totalItems}]]
+                </div>
+                
+                <div class="col-sm-1">
+                    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+      <a th:if="${currentPage != i}" th:href="@{'/course/' + ${i}}">[[${i}]]</a>
+      <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+                    </span>
+                </div>
+                
+                 <div class="col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/course/' + ${currentPage - 1}}">Previous</a>
+                    <span th:unless="${currentPage < totalPages}">Previous</span>
+                </div>
+                
+                <div class="col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/course/' + ${currentPage + 1}}">Next</a>
+                    <span th:unless="${currentPage < totalPages}">Next</span>
+                </div>
+
+                <div class="col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/course/' + ${totalPages}}">Last</a>
+                    <span th:unless="${currentPage < totalPages}">Last</span>
+                </div>
+                
+            </div>
+        </div>
+
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	
+	<p>Pievienot kursu!</p>
+<form action="#" th:action="@{/course/addNew}" th:object="${course}" method="post">
+	<table>
+	<tr>	
+		<td>Kursa nosaukums</td>
+		<td><input type="text" th:field="*{title}"></td>
+		<td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</td>
+	</tr>
+	<tr>
+		<td>Kredītpunktu skaits</td>
+		<td><input type="text" th:field="*{creditPoints}"></td>
+		<td th:if="${#fields.hasErrors('creditPoints')}" th:errors="*{creditPoints}">Credit point error</td>
+	</tr>	
+		<tr>
+		<td>Pasniedzējs</td>
+		<td><input type="text" th:field="*{professor}"></td>
+		<td th:if="${#fields.hasErrors('professor')}" th:errors="*{professor}">Professor error</td>
+	</tr>
+	</table>
+		
+		
+		<button type="submit">Saglabāt kursu</button>
+</form>	
+</body>
+</html>

@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+	<h1> Informācija par visiem kursiem </h1>
+	
+	<table>
+	<thead>
+        <tr>
+            <th> ID </th>
+            <th> Nosaukums </th>
+            <th> Kredītpunkti </th>
+            <th> Pasniedzējs </th>
+        </tr>
+    </thead>
+		<th:block th:each="temp: ${courses}">
+			<tr>
+				<td th:text="${temp.getCid()}"></td>
+				<td th:text="${temp.getTitle()}"></td>
+				<td th:text="${temp.getCreditPoints()}"></td>
+				<td th:text="${temp.getProfessor()}"></td>
+			</tr>
+		</th:block>
+	</table>
+	</body>
+</html>
